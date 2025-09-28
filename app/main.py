@@ -1,11 +1,13 @@
 def copy_file(command: str) -> None:
-    comm = command.split(" ")
+    parts = command.split(" ")
+    source_file_name = parts[1]
+    destination_file_name = parts[2]
 
-    if len(comm) < 3 or comm[0] != "cp" or comm[1] == comm[2]:
+    if len(parts) != 3 or parts[0] != "cp" or source_file_name == destination_file_name:
         return
 
     try:
-        with open(comm[1], "r") as file_in, open(comm[2], "w") as file_out:
+        with open(source_file_name, "r") as file_in, open(destination_file_name, "w") as file_out:
             for line in file_in:
                 file_out.write(line)
     except Exception:
